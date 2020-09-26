@@ -1,7 +1,8 @@
+import Nweet from "components/Nweet";
 import { dbService } from "fbase";
 import React, { useEffect, useState } from "react";
 
-const Home = () => {
+const Home = ({userObj}) => {
     const [nweet,setNweet] = useState("");
     const [nweets,setNweets] = useState([]);
     const getNweets = async () => {
@@ -15,14 +16,24 @@ const Home = () => {
         });
     };
     useEffect (() =>{
-        getNweets();
+        //getNweets();
+        //  읽어오는 다른 방법 .. 실시간 으로 데이터 읽어오기 onSnapshot
+        dbService.collection("nweets").onSnapshot((snapshot) =>{
+            const nweetArray = snapshot.docs.map((doc)=>({
+                id : doc.id,
+                ...doc.data(),
+            }));
+            //console.log(nweetArray);
+            setNweets(nweetArray);
+        });
     },[])
-    
+    //console.log(userObj);
     const onSubmit = async (event) => {
         event.preventDefault();
         await dbService.collection('nweets').add({
-            nweet:nweet,
+            text:nweet,
             createdAt: Date.now(),
+            creatorId: userObj.uid,
         })
         setNweet("");
     }
@@ -32,7 +43,7 @@ const Home = () => {
             ,} = event;
             setNweet(value);
     };
-    console.log(nweets);
+    //console.log(nweets);
     return(
         <div>
             <form onSubmit={onSubmit}>
@@ -41,9 +52,7 @@ const Home = () => {
             </form>
             <div>
                 {nweets.map((nweet) => (
-                    <div key={nweet.id}>
-                        <h4>{nweet.nweet}</h4>
-                    </div>
+                    <Nweet key={nweet.id} nweetObj={nweet} isOwner={nweet.creatorId === userObj.uid} />
                 ))}
             </div>
         </div>
