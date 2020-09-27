@@ -3,22 +3,42 @@ import AppRouter from 'components/Router';
 import {authService} from 'fbase';
 
 function App() {
-  const[init, setInit] =useState(false);
+  const [init, setInit] = useState(false);
   const [userObj,setUserObject] = useState(null);
+
   useEffect(()=>{
-    //로그인 체크 
-    // firebase 메서드 유저 상태 체크
     authService.onAuthStateChanged( (user) => {
       if(user){
-        setUserObject(user);
+        setUserObject({
+          displayName : user.displayName,
+          uid: user.uid,
+          updateProfile:(args) => user.updateProfile(args) ,
+        });
+      }else{
+        setUserObject(null);
       }
       setInit(true);
     })
   },[]);
+
+  const refreshUser = () => {
+    const user = authService.currentUser;
+    setUserObject({
+      displayName : user.displayName,
+      uid:user.uid,
+      updateProfile:(args) => user.updateProfile(args) ,
+    });
+  };
   return (
     <>
-    {init ? (<AppRouter isLoggedIn={Boolean(userObj)} userObj={userObj} /> ): ('Initializing....')}
-    <footer>&copy; {new Date().getFullYear()} Nwitter</footer>
+    {init ? (
+      <AppRouter 
+        refreshUser={refreshUser} 
+        isLoggedIn={Boolean(userObj)} 
+        userObj={userObj} /> 
+    ): (
+      'Initializing....'
+    )}
     </>
   );
 }
