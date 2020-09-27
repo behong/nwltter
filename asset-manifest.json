@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/nwltter/static/css/main.86fde8f1.chunk.css",
+    "main.css": "/nwltter/static/css/main.142a74e6.chunk.css",
     "main.js": "/nwltter/static/js/main.333aa974.chunk.js",
     "main.js.map": "/nwltter/static/js/main.333aa974.chunk.js.map",
     "runtime-main.js": "/nwltter/static/js/runtime-main.6b61bbe9.js",
@@ -8,15 +8,15 @@
     "static/js/2.1c5af8c7.chunk.js": "/nwltter/static/js/2.1c5af8c7.chunk.js",
     "static/js/2.1c5af8c7.chunk.js.map": "/nwltter/static/js/2.1c5af8c7.chunk.js.map",
     "index.html": "/nwltter/index.html",
-    "precache-manifest.3c24fe96d9e6688eaa99c58dba8acbc3.js": "/nwltter/precache-manifest.3c24fe96d9e6688eaa99c58dba8acbc3.js",
+    "precache-manifest.3ca3e0e38535769ca6051a8dc5ed1c08.js": "/nwltter/precache-manifest.3ca3e0e38535769ca6051a8dc5ed1c08.js",
     "service-worker.js": "/nwltter/service-worker.js",
-    "static/css/main.86fde8f1.chunk.css.map": "/nwltter/static/css/main.86fde8f1.chunk.css.map",
+    "static/css/main.142a74e6.chunk.css.map": "/nwltter/static/css/main.142a74e6.chunk.css.map",
     "static/js/2.1c5af8c7.chunk.js.LICENSE.txt": "/nwltter/static/js/2.1c5af8c7.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.6b61bbe9.js",
     "static/js/2.1c5af8c7.chunk.js",
-    "static/css/main.86fde8f1.chunk.css",
+    "static/css/main.142a74e6.chunk.css",
     "static/js/main.333aa974.chunk.js"
   ]
 }
